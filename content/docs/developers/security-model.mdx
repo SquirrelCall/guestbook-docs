@@ -1,0 +1,28 @@
+---
+title: "Security model"
+audience: "developers"
+summary: "A practical security posture for a kiosk-facing system handling potentially sensitive user data."
+url_prefix: "/docs/developers"
+nav_order: 8
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Baseline assumptions
+
+- Kiosks are exposed to the public
+- Users may attempt accidental or intentional misuse
+- PII may be present in entries and exports
+
+## High-level controls
+
+- Strong authentication for admin surfaces
+- Least privilege for data access
+- Rate limiting / abuse controls where appropriate
+- Secure transport (TLS) for network calls
+
+## Input security
+
+- Validate server-side (always)
+- Sanitize where it helps, but don’t rely on client-side enforcement
+- Keep error messages helpful but not leaky

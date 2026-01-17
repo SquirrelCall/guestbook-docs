@@ -3,8 +3,9 @@ import DocContent from "@/components/docs/DocContent";
 export default async function AdminDocsPage({
   params
 }: {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 }) {
-  const slug = ["admin", ...(params.slug ?? [])];
+  const resolvedParams = await params;
+  const slug = ["admin", ...(resolvedParams.slug ?? [])];
   return <DocContent slug={slug} />;
 }

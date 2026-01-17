@@ -1,14 +1,59 @@
 ---
-title: "Device Management"
+title: "Device and kiosk management"
 audience: "administrators"
-summary: "Describe how administrators maintain and monitor kiosk devices."
+summary: "Provision, bind, reset, and maintain kiosks and their peripherals without turning support into a scavenger hunt."
 url_prefix: "/docs/admin"
 nav_order: 3
 ---
 
-## What this covers
-Use this page to understand how devices are enrolled, updated, and monitored.
+This page focuses on practical operational details and the decisions that affect day-to-day support.
 
-## Operational checklist
-- Verify connectivity and kiosk health.
-- Schedule updates during low-traffic windows.
+## What admins “own” for devices
+
+- Initial provisioning (hardware + software)
+- Binding the kiosk to the correct organization/location
+- Ensuring peripherals work (scanner/camera/touchscreen)
+- Reset/reprovision workflows
+
+## Provisioning checklist (practical)
+
+- Verify the device boots cleanly and is managed (policies applied)
+- Confirm Guestbook launches reliably (auto-start if required)
+- Confirm the kiosk can reach the backend
+- Confirm time is correct (NTP or managed time source)
+- Validate peripherals:
+  - Barcode scanner input
+  - Camera stream (if used)
+  - Touch input / keyboard input
+
+## Binding a device
+
+Binding should answer two questions:
+1. **Which organization** does this kiosk belong to?
+2. **Which location/context** should entries be tagged with?
+
+After binding:
+- Validate the UI reflects the correct org/location
+- Submit a test entry and confirm it lands where expected
+
+## Reset vs reprovision
+
+### Reset
+Use when:
+- The kiosk UI is stuck
+- A session needs clearing
+- A peripheral state is bad and a restart fixes it
+
+Expect:
+- The kiosk returns to a known start screen
+- No policy/config should be lost
+
+### Reprovision
+Use when:
+- The device identity/binding is wrong
+- The install is corrupted or out of date
+- The OS environment drifted too far
+
+Expect:
+- Rebinding and validation steps are required afterward
+- You should treat it like a “new kiosk” again

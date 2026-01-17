@@ -1,0 +1,30 @@
+---
+title: "Configuration as code"
+audience: "developers"
+summary: "Environment and runtime configuration patterns that keep kiosk behavior stable across dev/stage/prod."
+url_prefix: "/docs/developers"
+nav_order: 6
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Configuration goals
+
+- Safe defaults
+- Explicit overrides
+- Environment separation (dev/stage/prod)
+- Minimal per-device drift
+
+## Typical configuration sources
+
+- Environment variables (build/runtime)
+- Remote configuration fetched at startup
+- Local device configuration for binding and identity (where appropriate)
+
+## Precedence (recommended)
+
+1. Device-local identity/binding context
+2. Remote org configuration
+3. Environment defaults
+
+Keep it boring. Boring is maintainable.

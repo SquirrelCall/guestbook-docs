@@ -1,13 +1,31 @@
 ---
-title: "Architecture Overview"
+title: "Architecture overview"
 audience: "developers"
-summary: "Provide a high-level mental model for Guestbook systems."
+summary: "A system-level view of Guestbook components and the data flow between them, with clear trust boundaries."
 url_prefix: "/docs/developers"
 nav_order: 2
 ---
 
-## What this covers
-Use this page to align on core services, data flow, and trust boundaries.
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
 
-## Where to go next
-Look for API and integration details once the architecture is understood.
+## Components (conceptual)
+
+Guestbook typically includes:
+
+- **Frontend kiosk UI**: the user-facing sign-in experience
+- **Backend services**: identity, configuration, entry storage, and reporting surfaces
+- **Device runtime**: kiosk OS + packaging/runtime behavior
+- **Optional sidecar services**: local scanning/camera helpers when browser constraints exist
+
+## Data flow (high-level)
+
+1. Kiosk loads configuration for its org/location context
+2. User provides input (manual entry, scan, or camera capture)
+3. Kiosk submits an entry payload to the backend
+4. Backend validates, stores, and exposes the entry for reporting/admin use
+
+## Trust boundaries
+
+- Kiosks are physically exposed. Assume they can be touched.
+- Admin surfaces require strong authentication and least privilege.
+- Entry data often includes PII—treat it as sensitive by default.

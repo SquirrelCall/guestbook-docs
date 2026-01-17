@@ -1,0 +1,29 @@
+---
+title: "Observability and logging"
+audience: "developers"
+summary: "Logging and health signals that help admins support kiosks without requiring a developer for every incident."
+url_prefix: "/docs/developers"
+nav_order: 7
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## What to log
+
+- App startup and configuration load
+- Entry submission attempts and outcomes (redact PII)
+- Device identity failures (without leaking secrets)
+- Scanner/camera initialization outcomes
+
+## Redaction rules
+
+- Never log raw secrets/tokens
+- Treat user-entered fields as sensitive by default
+- Prefer structured logs with explicit fields over dumping objects
+
+## Health checks
+
+Provide a simple health endpoint or signal that answers:
+- Is the service alive?
+- Can it reach dependencies?
+- Is it degraded?

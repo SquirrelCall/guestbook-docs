@@ -1,0 +1,29 @@
+---
+title: "Backend interaction model"
+audience: "developers"
+summary: "How the frontend communicates with backend services: error handling expectations, retries, and contract stability."
+url_prefix: "/docs/developers"
+nav_order: 3
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Communication patterns
+
+Keep the kiosk frontend predictable:
+- Prefer simple request/response calls for core actions (config fetch, entry submit)
+- Treat network failures as normal, not exceptional
+- Provide user-visible feedback that doesn’t leak internal details
+
+## Error taxonomy (conceptual)
+
+- **Validation errors**: user can fix input (highlight fields, explain next steps)
+- **Auth/identity errors**: device mis-provisioned or revoked (admin action required)
+- **Network errors**: retryable with backoff (give users a clear try-again path)
+- **Server errors**: log and surface a generic failure message
+
+## Contract stability
+
+If you version APIs:
+- Keep backward compatibility for kiosk devices where possible
+- Prefer additive changes over breaking payload reshapes

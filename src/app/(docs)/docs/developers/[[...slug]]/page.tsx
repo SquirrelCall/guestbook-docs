@@ -3,8 +3,9 @@ import DocContent from "@/components/docs/DocContent";
 export default async function DevelopersDocsPage({
   params
 }: {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 }) {
-  const slug = ["developers", ...(params.slug ?? [])];
+  const resolvedParams = await params;
+  const slug = ["developers", ...(resolvedParams.slug ?? [])];
   return <DocContent slug={slug} />;
 }

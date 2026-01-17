@@ -1,0 +1,42 @@
+---
+title: "Admin troubleshooting"
+audience: "administrators"
+summary: "Symptom-first steps for diagnosing issues without immediately needing a developer on standby."
+url_prefix: "/docs/admin"
+nav_order: 9
+---
+
+This page focuses on practical operational details and the decisions that affect day-to-day support.
+
+## First triage questions
+
+- Is this one kiosk or all kiosks?
+- Did anything change recently (network, updates, policy)?
+- Is the failure consistent or intermittent?
+- Can you reproduce it?
+
+## Common symptoms
+
+### Kiosk can’t reach the backend
+- Verify network path and DNS
+- Check whether other services are affected
+- Capture timestamps and locations
+
+### Scanner input stopped working
+- Confirm it’s still recognized by the OS
+- Test input in a basic text field
+- Swap hardware if you need to isolate the cause quickly
+
+### UI freezes or won’t reset
+- Restart the kiosk app
+- Reboot the device if needed
+- If it recurs, capture steps to reproduce and escalate
+
+## Escalation checklist
+
+When escalating to the dev/integrator team, include:
+- Kiosk identifier and location
+- Date/time (with timezone)
+- What the user was doing
+- What you expected vs what happened
+- Any logs or screenshots available

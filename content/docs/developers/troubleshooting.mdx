@@ -1,0 +1,35 @@
+---
+title: "Developer troubleshooting"
+audience: "developers"
+summary: "Diagnostics guidance for integration and runtime issues: isolate client vs server vs environment."
+url_prefix: "/docs/developers"
+nav_order: 10
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Debugging checklist
+
+- Reproduce reliably (or define trigger conditions)
+- Separate concerns:
+  - client UI
+  - device runtime/peripherals
+  - backend services
+  - network path
+
+## Common issues
+
+### Device identity failures
+- Confirm provisioning and binding
+- Confirm revocation/rotation behavior
+- Avoid leaking secrets in logs while debugging
+
+### Scanner/camera failures
+- Validate OS-level device availability
+- Validate permissions and runtime constraints
+- Check for initialization race conditions
+
+### API contract mismatch
+- Confirm client/server versions
+- Confirm payload shapes and error envelopes
+- Prefer backward-compatible fixes where possible

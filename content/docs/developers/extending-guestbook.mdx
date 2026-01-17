@@ -1,0 +1,28 @@
+---
+title: "Extending Guestbook"
+audience: "developers"
+summary: "Guidelines for customizing behavior without creating upgrade pain or scattering business logic across the stack."
+url_prefix: "/docs/developers"
+nav_order: 9
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Extension philosophy
+
+- Prefer configuration over forks
+- Prefer additive hooks/plugins over patching core flows
+- Keep upgrade paths predictable
+
+## Safe extension areas (conceptual)
+
+- Custom fields and validation rules (when supported)
+- Branding and messaging
+- Export formats and downstream pipelines
+- Webhook/event integrations (when supported)
+
+## High-risk areas
+
+- Rewriting the kiosk session flow without clear requirements
+- Changing identity/provisioning behavior ad-hoc
+- Embedding org-specific logic directly into the kiosk UI

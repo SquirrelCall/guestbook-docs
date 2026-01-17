@@ -1,0 +1,29 @@
+---
+title: "Admin users and access control"
+audience: "administrators"
+summary: "Set up admin access safely using least privilege and predictable roles, without blocking normal operations."
+url_prefix: "/docs/admin"
+nav_order: 5
+---
+
+This page focuses on practical operational details and the decisions that affect day-to-day support.
+
+## Roles (conceptual)
+
+Guestbook typically needs a small set of roles. Keep it boring.
+
+- **Admin / Owner**: can manage devices, configuration, and data access
+- **Manager**: can view and export data, may manage limited configuration
+- **Viewer**: read-only access for reporting/oversight
+
+## Least privilege, in plain language
+
+Give people the minimum access needed to do their job.
+- Don’t hand out admin just because it’s easier
+- Treat exports as sensitive by default (they can contain PII)
+
+## Account lifecycle basics
+
+- Use named accounts (avoid shared credentials)
+- Remove access when staff change roles
+- Document who owns break-glass access for emergencies

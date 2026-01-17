@@ -1,0 +1,34 @@
+---
+title: "Device identity and trust model"
+audience: "developers"
+summary: "Concepts for provisioning, binding, rotation, and revocation of kiosk identities in a physically exposed environment."
+url_prefix: "/docs/developers"
+nav_order: 4
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Goals
+
+- A kiosk can prove it is an approved device
+- A kiosk can be bound to an org/location context
+- Access can be revoked if a device is compromised or retired
+- Rotation is possible without reimaging everything
+
+## Provisioning flow (conceptual)
+
+1. Create device identity (unique identifier + secret/token)
+2. Bind identity to org/location context
+3. Kiosk fetches config using its identity
+4. Kiosk submits entries as that identity
+
+## Rotation and revocation
+
+- Rotation: replace credentials without replacing the device
+- Revocation: invalidate a device identity and force re-provisioning
+
+## Threat model assumptions
+
+- Physical access is plausible
+- Network is not always reliable
+- Kiosk UX must remain simple even when identity fails

@@ -1,0 +1,29 @@
+---
+title: "Security considerations"
+audience: "administrators"
+summary: "Operate Guestbook safely: protect devices, reduce exposure, and handle data as if it matters (because it does)."
+url_prefix: "/docs/admin"
+nav_order: 8
+---
+
+This page focuses on practical operational details and the decisions that affect day-to-day support.
+
+## Network exposure (high-level)
+
+- Keep admin surfaces behind authenticated access
+- Avoid exposing kiosk endpoints publicly unless required
+- Prefer segmented networks for kiosks where possible
+
+## Physical security
+
+Kiosks are public-facing by design. Plan for:
+- Curious hands
+- Accidental unplugging
+- Power cycling
+- Peripheral tampering
+
+## Data handling
+
+- Assume exports contain PII
+- Keep access limited and auditable
+- Prefer policy over tribal knowledge

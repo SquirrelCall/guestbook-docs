@@ -1,0 +1,36 @@
+---
+title: "Barcode and scanner integration"
+audience: "developers"
+summary: "Implementation patterns for scanner input and camera-based scanning, including failure modes and UX coupling."
+url_prefix: "/docs/developers"
+nav_order: 5
+---
+
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
+
+## Hardware scanner input (keyboard wedge)
+
+Most barcode scanners act like a keyboard:
+- Input arrives as a burst of characters
+- Often includes a terminator (e.g., Enter)
+
+Implementation notes:
+- Debounce repeated scans
+- Handle partial input and timeouts
+- Avoid double-submission when Enter is present
+
+## Camera-based scanning (sidecar model)
+
+Browsers can be constrained by camera permissions, autofocus behavior, and barcode decoding performance.
+
+A sidecar can:
+- own camera access
+- stream a preview (optional)
+- expose a next-scan endpoint or event channel
+
+## Failure modes to handle
+
+- No camera available / permission denied
+- Scanner disconnected
+- Unrecognized barcode formats
+- Poor lighting or motion blur

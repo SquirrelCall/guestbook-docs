@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { NavSection } from "./NavTree";
 
@@ -20,12 +20,21 @@ export default function SidebarAccordion({ sections }: SidebarAccordionProps) {
   }, [pathname, sections]);
 
   const [openAudience, setOpenAudience] = useState(initialOpen);
+  const lastPathnameRef = useRef(pathname);
 
   useEffect(() => {
-    if (initialOpen && initialOpen !== openAudience) {
-      setOpenAudience(initialOpen);
+    if (lastPathnameRef.current === pathname) {
+      return;
     }
-  }, [initialOpen, openAudience]);
+
+    const active = sections.find((section) =>
+      pathname.startsWith(section.urlPrefix)
+    );
+    if (active && active.audience !== openAudience) {
+      setOpenAudience(active.audience);
+    }
+    lastPathnameRef.current = pathname;
+  }, [pathname, openAudience, sections]);
 
   return (
     <nav className="space-y-4">
@@ -36,6 +45,7 @@ export default function SidebarAccordion({ sections }: SidebarAccordionProps) {
             <button
               type="button"
               onClick={() => setOpenAudience(section.audience)}
+              aria-expanded={isOpen}
               className="flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100"
             >
               <span>{section.label}</span>
@@ -43,7 +53,11 @@ export default function SidebarAccordion({ sections }: SidebarAccordionProps) {
                 {isOpen ? "−" : "+"}
               </span>
             </button>
-            {isOpen ? (
+            <div
+              className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-out ${
+                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
               <ul className="space-y-1 pl-2">
                 {section.items.map((item) => {
                   const isActive = pathname === item.href;
@@ -63,7 +77,7 @@ export default function SidebarAccordion({ sections }: SidebarAccordionProps) {
                   );
                 })}
               </ul>
-            ) : null}
+            </div>
           </div>
         );
       })}

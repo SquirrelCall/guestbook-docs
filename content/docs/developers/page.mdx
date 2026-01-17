@@ -1,14 +1,33 @@
 ---
 title: "Developers & Integrators"
 audience: "developers"
-summary: "Define the technical surface area for integrations and extensions."
+summary: "Technical guidance for integrating with Guestbook, extending behavior, and understanding system boundaries."
 url_prefix: "/docs/developers"
 nav_order: 1
+icon: "code"
 ---
 
-## Who this section is for
-This section is for developers and integrators building on Guestbook APIs or embedding it into other systems.
+This page lays out the technical contract, assumptions, and the failure modes you should plan for.
 
-## If you are not a developer
-- Users: [User docs](/docs/users) for kiosk guidance and visit flow.
-- Administrators: [Administrator docs](/docs/admin) for deployment and operations.
+## Who this section is for
+
+This section is for people building or integrating systems around Guestbook: API consumers, platform engineers, and developers extending deployments.
+
+## What you’ll find here
+
+- Architecture and trust boundaries
+- Backend interaction patterns
+- Device identity and provisioning concepts
+- Scanner/camera integration models
+- Configuration, logging, and observability basics
+
+## If you’re in the wrong place
+
+- If you’re operating kiosks day-to-day, head to **Administrators**.
+- If you’re using a kiosk to check in, start in **Users**.
+
+## This section’s contract
+
+We’ll be precise and avoid guessing. When details are implementation-specific, the docs should either:
+- link to the canonical source, or
+- clearly label placeholders until the implementation is finalized.

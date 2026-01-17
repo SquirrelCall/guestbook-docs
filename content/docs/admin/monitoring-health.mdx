@@ -1,0 +1,32 @@
+---
+title: "Monitoring and health"
+audience: "administrators"
+summary: "Keep kiosks stable by watching the right signals and knowing what “healthy” looks like."
+url_prefix: "/docs/admin"
+nav_order: 7
+---
+
+This page focuses on practical operational details and the decisions that affect day-to-day support.
+
+## What “healthy” looks like
+
+- Kiosk can reach the backend reliably
+- Kiosk UI is responsive and returns to its start state between sessions
+- Peripheral input is consistent (scanner/camera/touch)
+- Timestamps and reporting look sane
+
+## What to monitor (MVP)
+
+- Service availability (up/down)
+- Kiosk check-in heartbeat (if supported)
+- Error rate trends (spikes matter more than isolated errors)
+
+## Alerting expectations
+
+Alerts should answer:
+- What broke?
+- Where is it?
+- Who owns the fix?
+- What’s the immediate workaround?
+
+Avoid noisy alerts. If everything is urgent, nothing is.
