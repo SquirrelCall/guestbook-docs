@@ -2,6 +2,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 
 import PageHeader from "@/components/docs/PageHeader";
+import PageNavigation from "@/components/docs/PageNavigation";
 import { getDocBySlug } from "@/lib/docs/nav";
 
 type DocContentProps = {
@@ -60,9 +61,13 @@ export default async function DocContent({ slug }: DocContentProps) {
         audience={doc.frontmatter.audience}
         icon={doc.frontmatter.icon}
       />
-      <div className="docs-prose prose prose-slate mt-6 max-w-none text-base leading-7 prose-headings:scroll-mt-24 prose-headings:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700 prose-a:text-slate-900 prose-a:underline prose-a:decoration-slate-300 hover:prose-a:decoration-slate-500 prose-a:underline-offset-4 visited:prose-a:text-slate-700">
+      <div className="docs-prose prose prose-slate mt-6 max-w-none text-base leading-7">
         {content}
       </div>
+      <PageNavigation
+        currentHref={doc.href}
+        audience={doc.frontmatter.audience}
+      />
     </div>
   );
 }

@@ -22,7 +22,11 @@ function getPreferredTheme(): ThemeMode {
 
 function applyTheme(theme: ThemeMode) {
   const root = document.documentElement;
-  root.classList.toggle("dark", theme === "dark");
+  if (theme === "dark") {
+    root.classList.add("dark");
+  } else {
+    root.classList.remove("dark");
+  }
   window.localStorage.setItem(STORAGE_KEY, theme);
 }
 
@@ -47,7 +51,7 @@ export default function ThemeToggle() {
       onClick={handleToggle}
       aria-pressed={theme === "dark"}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      className="rounded-full border border-slate-200 bg-white p-2 text-slate-600 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+      className="rounded-full border border-slate-300 bg-white p-2 text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
     >
       {theme === "dark" ? (
         <FaSun className="h-4 w-4" aria-hidden />
