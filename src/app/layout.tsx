@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "swagger-ui-react/swagger-ui.css";
 
 export const metadata: Metadata = {
   title: "Guestbook Documentation",

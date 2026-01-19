@@ -160,3 +160,45 @@ header > p {
   color: #a78bfa;
   text-decoration-color: #7c3aed;
 }
+
+/* Swagger UI (OpenAPI reference) */
+.swagger-ui {
+  font-family: inherit;
+}
+
+.swagger-ui .topbar {
+  display: none;
+}
+
+.swagger-ui .wrapper {
+  padding: 0;
+}
+
+.swagger-ui .info {
+  margin: 24px 0;
+}
+
+.swagger-ui .info .title {
+  color: #0f172a;
+  font-weight: 650;
+}
+
+.swagger-ui .opblock {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.swagger-ui .opblock-tag {
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.swagger-ui .scheme-container {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.swagger-ui .btn {
+  border-radius: 10px;
+}

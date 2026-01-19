@@ -1,10 +1,25 @@
+import type { IconType } from "react-icons";
 import {
   FaBarcode,
+  FaBook,
+  FaBug,
+  FaChartLine,
+  FaCircleCheck,
+  FaCircleQuestion,
   FaCode,
   FaClipboard,
+  FaDiagramProject,
   FaGear,
   FaHouse,
-  FaUser
+  FaIdCard,
+  FaLifeRing,
+  FaPlug,
+  FaPuzzlePiece,
+  FaServer,
+  FaShield,
+  FaTabletScreenButton,
+  FaUser,
+  FaUsers
 } from "react-icons/fa6";
 
 import { AUDIENCE_META, type Audience } from "@/lib/docs/constants";
@@ -23,21 +38,40 @@ export default function PageHeader({
   icon
 }: PageHeaderProps) {
   const label = AUDIENCE_META[audience]?.label ?? audience;
-  const iconKey = icon?.toLowerCase();
-  const IconComponent =
-    iconKey === "user"
-      ? FaUser
-      : iconKey === "settings"
-      ? FaGear
-      : iconKey === "code"
-      ? FaCode
-      : iconKey === "play"
-      ? FaHouse
-      : iconKey === "clipboard"
-      ? FaClipboard
-      : iconKey === "barcode"
-      ? FaBarcode
-      : null;
+  const iconKey = icon?.toLowerCase().trim();
+
+  const ICONS: Record<string, IconType> = {
+    // Existing / users
+    user: FaUser,
+    play: FaHouse,
+    barcode: FaBarcode,
+    "scan-line": FaBarcode,
+    check: FaCircleCheck,
+    shield: FaShield,
+    "life-buoy": FaLifeRing,
+
+    // Landing pages
+    settings: FaGear,
+    code: FaCode,
+
+    // Admin pages
+    device: FaTabletScreenButton,
+    "chart-line": FaChartLine,
+    bug: FaBug,
+    users: FaUsers,
+    server: FaServer,
+
+    // Developer pages
+    book: FaBook,
+    plug: FaPlug,
+    "diagram-project": FaDiagramProject,
+    "id-card": FaIdCard,
+    "puzzle-piece": FaPuzzlePiece,
+    clipboard: FaClipboard
+  };
+
+  const IconComponent: IconType | null =
+    iconKey && ICONS[iconKey] ? ICONS[iconKey] : null;
 
   return (
     <header className="space-y-3 border-b border-slate-200 pb-4 dark:border-slate-700">
@@ -46,9 +80,12 @@ export default function PageHeader({
           <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700 dark:bg-slate-800 dark:text-slate-200">
             <IconComponent className="h-3.5 w-3.5" aria-hidden />
           </span>
-        ) : icon ? (
-          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold uppercase text-slate-700 dark:bg-slate-800 dark:text-slate-200">
-            {icon}
+        ) : iconKey ? (
+          <span
+            className="rounded-full bg-slate-100 px-2 py-1 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+            title={`Unknown icon: ${icon}`}
+          >
+            <FaCircleQuestion className="h-3.5 w-3.5" aria-hidden />
           </span>
         ) : null}
         {label}
